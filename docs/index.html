@@ -190,8 +190,10 @@
             </p>
 
             \[
-            \hat s_{\theta}(\vx_t) := \sum_c \mathbbm{1}_{c^*}(c) \nabla_{\vx_t}\log p_\theta(\vx_t \mid c),
-            \quad c^* = \argmax_{c\in \sC} \log p(c | \vx_t).            
+            \require{bbm}
+            \DeclareMathOperator*{\argmax}{arg\,max}
+            \hat s_{\theta}(\bm{x}_t) := \sum_c \mathbbm{1}_{c^*}(c) \nabla_{\bm{x}_t}\log p_\theta(\bm{x}_t \mid c),
+            \quad c^* = \argmax_{c\in \mathbb{C}} \log p(c | \bm{x}_t).            
             \]
             <p>
               By recalculating the most probable class at each timestep, we ensure that the guidance signal remains
