@@ -1,0 +1,132 @@
+{
+  "examples": [
+    {
+      "id": "01_a_bird_taking_off_seed43",
+      "prompt": "a bird taking off",
+      "annotations": {
+        "baseline": [{"region": {"x": 71.09, "y": 37.30, "width": 16.80, "height": 17.58}, "description": "Head is malformed"}],
+        "dynamic": [{"region": {"x": 68.95, "y": 36.91, "width": 18.16, "height": 17.97}}]
+      }
+    },
+    {
+      "id": "02_a_bird_taking_off_seed45",
+      "prompt": "a bird taking off",
+      "annotations": {
+        "baseline": [{"region": {"x": 56.64, "y": 27.34, "width": 33.01, "height": 18.55}, "description": "Wing is malformed"}],
+        "dynamic": [{"region": {"x": 57.81, "y": 26.37, "width": 41.80, "height": 16.02}}]
+      }
+    },
+    {
+      "id": "03_a_bird_taking_off_seed48",
+      "prompt": "a bird taking off",
+      "annotations": {
+        "baseline": [{"region": {"x": 38.09, "y": 43.36, "width": 13.87, "height": 11.13}, "description": "Head is malformed; beak missing"}],
+        "dynamic": [{"region": {"x": 35.55, "y": 43.16, "width": 16.99, "height": 11.72}}]
+      }
+    },
+    {
+      "id": "04_a_cat_jumping_seed50",
+      "prompt": "a cat jumping",
+      "annotations": {
+        "baseline": [
+          {"region": {"x": 66.99, "y": 20.51, "width": 23.83, "height": 23.44}, "description": "Malformed face"},
+          {"region": {"x": 90.43, "y": 34.18, "width": 8.59, "height": 20.90}, "description": "Missing leg"}
+        ],
+        "dynamic": []
+      }
+    },
+    {
+      "id": "06_a_hand_seed46",
+      "prompt": "a hand",
+      "annotations": {
+        "baseline": [{"region": {"x": 9.38, "y": 28.91, "width": 44.53, "height": 58.98}, "description": "Incorrect anatomy"}],
+        "dynamic": []
+      }
+    },
+    {
+      "id": "07_a_horse_running_seed44",
+      "prompt": "a horse running",
+      "annotations": {
+        "baseline": [{"region": {"x": 68.16, "y": 60.74, "width": 19.92, "height": 34.96}, "description": "The horse has 2 back left legs"}],
+        "dynamic": [{"region": {"x": 62.89, "y": 57.81, "width": 20.31, "height": 37.89}}]
+      }
+    },
+    {
+      "id": "08_a_bird_taking_off_seed100",
+      "prompt": "a bird taking off",
+      "annotations": {
+        "baseline": [
+          {"region": {"x": 0.59, "y": 17.97, "width": 32.62, "height": 23.24}, "description": "Artifact resembling a wing that doesn't make anatomical sense"},
+          {"region": {"x": 51.17, "y": 49.32, "width": 30.66, "height": 17.38}, "description": "Bird has no head"}
+        ],
+        "dynamic": [
+          {"region": {"x": 0.39, "y": 16.21, "width": 33.59, "height": 24.41}}
+        ]
+      }
+    },
+    {
+      "id": "09_a_cat_and_dog_together_seed102",
+      "prompt": "a cat and dog together",
+      "annotations": {
+        "baseline": [{"region": {"x": 0.78, "y": 8.20, "width": 41.41, "height": 81.25}, "description": "Generated 2 dogs instead of dog and cat"}],
+        "dynamic": []
+      }
+    },
+    {
+      "id": "10_a_cat_in_a_living_room_seed103",
+      "prompt": "a cat in a living room",
+      "annotations": {
+        "baseline": [{"region": {"x": 58.40, "y": 71.48, "width": 20.51, "height": 9.77}, "description": "Missing leg"}],
+        "dynamic": []
+      }
+    },
+    {
+      "id": "11_a_cat_on_a_windowsill_seed100",
+      "prompt": "a cat on a windowsill",
+      "annotations": {
+        "baseline": [{"region": {"x": 27.15, "y": 67.38, "width": 45.51, "height": 32.03}, "description": "Cat has 3 front legs"}],
+        "dynamic": [{"region": {"x": 25.39, "y": 61.52, "width": 33.79, "height": 37.11}}]
+      }
+    },
+    {
+      "id": "12_a_door_seed100",
+      "prompt": "a door",
+      "annotations": {
+        "baseline": [{"region": {"x": 59.96, "y": 78.71, "width": 9.77, "height": 10.16}, "description": "Door has no doorknob"}],
+        "dynamic": [{"region": {"x": 60.55, "y": 80.47, "width": 8.20, "height": 7.81}}]
+      }
+    },
+    {
+      "id": "13_a_frog_on_a_lily_pad_seed103",
+      "prompt": "a frog on a lily pad",
+      "annotations": {
+        "baseline": [{"region": {"x": 52.73, "y": 21.09, "width": 44.73, "height": 26.37}, "description": "Front leg starts from incorrect position"}],
+        "dynamic": [{"region": {"x": 57.23, "y": 24.41, "width": 25.98, "height": 20.51}}]
+      }
+    },
+    {
+      "id": "14_a_vase_and_flowers_on_a_table_seed105",
+      "prompt": "a vase and flowers on a table",
+      "annotations": {
+        "baseline": [{"region": {"x": 54.69, "y": 36.72, "width": 25.59, "height": 46.68}, "description": "2 Vases instead of 1, as the prompt instructs"}],
+        "dynamic": []
+      }
+    },
+    {
+      "id": "15_a_frog_seed43",
+      "prompt": "a frog",
+      "annotations": {
+        "baseline": [{"region": {"x": 4.69, "y": 68.16, "width": 32.81, "height": 25.20}, "description": "Additional front leg"}],
+        "dynamic": []
+      }
+    },
+    {
+      "id": "16_a_rabbit_seed45",
+      "prompt": "a rabbit",
+      "annotations": {
+        "baseline": [{"region": {"x": 29.88, "y": 69.53, "width": 33.98, "height": 26.56}, "description": "Additional leg"}],
+        "dynamic": [{"region": {"x": 30.27, "y": 64.06, "width": 36.13, "height": 32.81}}]
+      }
+    }
+  ]
+}

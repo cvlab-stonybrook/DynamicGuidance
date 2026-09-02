@@ -1,11 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empty Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="title" content="Mitigating Diffusion Model Hallucinations with Dynamic Guidance">
+  <meta name="description" content="Guidance with a condition that dynamically changes during denoising mitigates hallucinations in image generation with diffusion models.">
+  <meta name="keywords" content="text-to-image, diffusion models, VLM, stable diffusion, hallucination, prompt adherence, AI, machine learning">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Mitigating Diffusion Model Hallucinations with Dynamic Guidance">
+  <meta property="og:description" content="Guidance with a condition that dynamically changes during denoising mitigates hallucinations in image generation with diffusion models.">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mitigating Diffusion Model Hallucinations with Dynamic Guidance">
+  <meta name="twitter:description" content="Guidance with a condition that dynamically changes during denoising mitigates hallucinations in image generation with diffusion models.">
+
+  <title>Mitigating Diffusion Model Hallucinations with Dynamic Guidance</title>
+
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <noscript>
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- More Works Dropdown -->
+  <div class="more-works-container">
+    <button class="more-works-btn" onclick="toggleMoreWorks()" title="More work by the authors">
+      <i class="fas fa-flask"></i>
+      More Work
+      <i class="fas fa-chevron-down dropdown-arrow"></i>
+    </button>
+    <div class="more-works-dropdown" id="moreWorksDropdown">
+      <div class="dropdown-header">
+        <h4>Related Work by the Authors</h4>
+        <button class="close-btn" onclick="toggleMoreWorks()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="works-list">
+        <a href="https://arxiv.org/abs/2605.06831" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Why DDIM Hallucinates More than DDPM: A Theoretical Analysis of Reverse Dynamics</h5>
+            <p>Theoretical analysis of diffusion model hallucinations.</p>
+            <span class="work-venue">ICML 2026</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://arxiv.org/abs/2405.19201" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Going beyond compositions, DDPMs can produce zero-shot interpolations</h5>
+            <p>You can induce desired interpolations in diffusion models through guidance.</p>
+            <span class="work-venue">ICML 2024</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/5e6cec2a9520708381fe520246018e8b-Abstract-Conference.html" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Diffusion models as plug-and-play priors</h5>
+            <p>Diffusion models can be used in controlled inference tasks without any additional training.</p>
+            <span class="work-venue">NeurIPS 2022</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Mitigating Diffusion Model Hallucinations with Dynamic Guidance </h1>
+            <p class="is-size-4" style="color: var(--text-secondary); margin-bottom: 2rem;">Under Review</p>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://kostino.github.io/">Kostas Triaridis</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://alexgraikos.github.io/">Alexandros Graikos</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://aggelinacha.github.io/">Aggelina Chatziagapi</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://grigoris.ece.wisc.edu/index.html">Grigorios G. Chrysos</a><sup>2</sup></span>
+              <span class="author-block"><a href="https://www3.cs.stonybrook.edu/~samaras/">Dimitris Samaras</a><sup>1</sup></span>
+            </div>
+
+            <div class="is-size-6 publication-authors" style="margin-top: 0.5rem;">
+              <span class="author-block"><sup>1</sup>Stony Brook University,</span>
+              <span class="author-block"><sup>2</sup>University of Wisconsin-Madison</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2510.05356" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark" style="pointer-events: none; opacity: 0.5;">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code (Coming Soon)</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Overview</h2>
+          <div class="content has-text-justified">
+            <p>
+                Recent findings have shown that the learned score function \( s_\theta(x_t)\) in DDPMs tends to be overly
+                smooth in the low-density regions between modes. This lack of “sharpness" can effectively trap
+                samples during denoising, a problem particularly pronounced by few-step sampling, where the
+                denoiser cannot leap across these smooth regions. The resulting samples end up as interpolations
+                between those modes, which might be “hallucinations" depending on the semantic relationship
+                between the specific modes involved.
+            </p>
+            <p>
+              Since semantic interpolations are often desirable and contribute to sample diversity, 
+              we require a targeted solution to address diffusion model hallucinations.
+            </p>
+            <p>
+              We propose <strong>Dynamic Guidance</strong>, a simple yet effective guidance algorithm that adaptively sharpens
+              the learned score function along the sampling trajectory. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Equations Section -->
+  <section class="section hero is-light" id="equations">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">Dynamic Guidance</h2>
+          <div class="content has-text-justified">
+            <p>
+              <strong>Core insight: </strong>  We can identify potential modes \(c^*\) that a sample 
+              is naturally gravitating towards during the sampling process for a given condition \(y\), and use the
+              score function of the locally sharper conditional distribution \(p(x|y,c^*)\) rather than the overly-smooth
+              \(p(x|y)\) or an attenuated \( p(x|y,c) \) from a distant mode.
+            </p>
+            
+            <p>
+              <strong>1. Identify modes: </strong> First identify (manually or automatically) an appropriate set of mode 
+              labels \(\mathbb{C}\) whose interpolations correspond to the defined hallucinations.
+            </p>
+            <p>
+              <strong>2. Dynamic Guidance: </strong> Apply guidance dynamically, without fixing the guidance target/condition 
+              at the beginning of the sampling process. At each timestep, we identify the mode with the maximum probability 
+              given the current noisy sample \(x_t\). and perform the sampling step by applying guidance using the selected mode. 
+              We essentially calculate a sharper approximation of the score function:
+            </p>
+
+            \[
+            \hat s_{\theta}(\vx_t) := \sum_c \mathbbm{1}_{c^*}(c) \nabla_{\vx_t}\log p_\theta(\vx_t \mid c),
+            \quad c^* = \argmax_{c\in \sC} \log p(c | \vx_t).            
+            \]
+            <p>
+              By recalculating the most probable class at each timestep, we ensure that the guidance signal remains
+              aligned with the local score direction and adapts to the sample's evolving trajectory.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Plot Section -->
+  <section class="section hero is-light" id="plot-section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Visualization of score function in latent space</h2>
+      <p class="has-text-centered" style="margin-bottom: 2rem; color: var(--text-secondary);">
+        We train a diffusion model on a dataset of images that contain up to 1 instance of 3 different shapes; 
+        We pick an initial image that contains two different shapes (triangle + pentagon), which
+        is a hallucination for this dataset. We identify a latent dimension that controls the
+appearance of the left shape (latent dimension 9). To resolve the hallucination, the pentagon on the left should
+disappear or turn into a triangle. In the in-between region, where the left shape is square or pentagon,
+the unguided score function is zero, “trapping" the sample and generating a hallucination. Dynamic
+Guidance sharpens the score in this region, steering the sample toward valid images that only contain
+triangles. Hover over points to see the image for different values of latent dimension 9.
+      </p>
+      <div class="plot-container">
+        <div class="chart-wrapper" id="plotImageContainer">
+          <img src="images/plot/chart.png" alt="Score chart for dimension 9" class="plot-image">
+          <!-- Hover points added via JS -->
+        </div>
+        <div class="hover-image-container" id="hoverImageContainer">
+          <p class="placeholder-text">Hover over a point</p>
+          <img id="hoverImage" src="" alt="Image for specific value of latent dimension 9">
+          <p id="hoverLabel"></p>
+        </div>
+      </div>
+      <div class="slider-wrapper">
+        <input type="range" id="stepSlider" min="0" max="10" value="7" step="1">
+      </div>
+
+      <div style="margin: 4rem 0;"></div>
+
+      <p class="has-text-centered" style="margin-bottom: 2rem; color: var(--text-secondary);">
+        Dynamic Guidance does not affect the score function along dimensions that are unrelated
+to hallucinations, like the one controlling the position of the shape on the right (latent dimension 5).
+        Hover over points to see the image for different values of latent dimension 5.
+      </p>
+      <div class="plot-container">
+        <div class="chart-wrapper" id="plotImageContainer2">
+          <img src="images/plot2/chart.png" alt="Chart 2" class="plot-image">
+        </div>
+        <div class="hover-image-container" id="hoverImageContainer2">
+          <p class="placeholder-text">Hover over a point</p>
+          <img src="" alt="Step image">
+        </div>
+      </div>
+      <div class="slider-wrapper">
+        <input type="range" id="stepSlider2" min="0" max="10" value="7" step="1">
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="section" id="results">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Dynamic Guidance improves ImageNet generation</h2>
+      <!-- Full-width figure -->
+      <div class="has-text-centered" style="margin-top: 3rem;">
+        <figure>
+          <img src="images/results_figure.png" alt="Results comparison figure" style="width: 100%; max-width: 1200px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <figcaption style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.95rem;">
+            <strong>Figure:</strong> Performance of Dynamic Guidance on Hallucination-related metrics on
+            ImageNet-1k generation. Dynamic Guidance consistently improves Inception Score and precision
+            across guidance scales, which corresponds to fewer hallucinations.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Examples Section -->
+  <section class="section" id="examples">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Dynamic Guidance for Text-to-Image generation</h2>
+      <p class="has-text-centered" style="margin-bottom: 2rem; color: var(--text-secondary);">
+        Click any image to swap between <span style="color: #ef4444; font-weight: 600;">Baseline SD 2.1</span> (red border)
+        and <span style="color: #22c55e; font-weight: 600;">Dynamic Guidance</span> (green border).
+        Hover to see annotations.
+      </p>
+      <div id="examples-container" class="columns is-multiline">
+        <!-- Examples loaded via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@article{triaridis2025mitigating,
+  title={Mitigating Diffusion Model Hallucinations with Dynamic Guidance},
+  author={Triaridis, Kostas and Graikos, Alexandros and Chatziagapi, Aggelina and Chrysos, Grigorios G and Samaras, Dimitris},
+  journal={arXiv preprint arXiv:2510.05356},
+  year={2025}
+}</code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</main>
 </body>
 </html>
