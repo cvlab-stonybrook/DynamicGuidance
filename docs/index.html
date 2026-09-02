@@ -47,6 +47,14 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
+
+  <div style="display: none;">
+$$
+\require{bbm}
+\DeclareMathOperator*{\argmax}{argmax}
+$$
+</div>
+
   <!-- More Works Dropdown -->
   <div class="more-works-container">
     <button class="more-works-btn" onclick="toggleMoreWorks()" title="More work by the authors">
@@ -190,8 +198,6 @@
             </p>
 
             \[
-            \require{bbm}
-            \DeclareMathOperator*{\argmax}{arg\,max}
             \hat s_{\theta}(\bm{x}_t) := \sum_c \mathbbm{1}_{c^*}(c) \nabla_{\bm{x}_t}\log p_\theta(\bm{x}_t \mid c),
             \quad c^* = \argmax_{c\in \mathbb{C}} \log p(c | \bm{x}_t).            
             \]
