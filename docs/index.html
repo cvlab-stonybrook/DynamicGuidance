@@ -47,7 +47,12 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
-
+<div style="display: none;">
+$$
+\DeclareMathOperator*{\argmax}{argmax}
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+$$
+</div>
 
   <!-- More Works Dropdown -->
   <div class="more-works-container">
@@ -192,7 +197,7 @@
             </p>
 
             \[
-            \hat s_{\theta}(\bm{x}_t) := \sum_c \mathbbm{1}_{c^*}(c) \nabla_{\bm{x}_t}\log p_\theta(\bm{x}_t \mid c),
+            \hat s_{\theta}(\bm{x}_t) := \sum_c \mathbb{1}_{c^*}(c) \nabla_{\bm{x}_t}\log p_\theta(\bm{x}_t \mid c),
             \quad c^* = \argmax_{c\in \mathbb{C}} \log p(c | \bm{x}_t).            
             \]
             <p>
